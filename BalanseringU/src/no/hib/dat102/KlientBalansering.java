@@ -10,6 +10,7 @@ public class KlientBalansering{
         balansering.lesFraFil(filnavn);
         //WOW A COMMENT
           //This comment is unacceptable. It infringes on my rights!
+        //Stop filling the comments with so much useless banter!
  }//main
 
 }//class
