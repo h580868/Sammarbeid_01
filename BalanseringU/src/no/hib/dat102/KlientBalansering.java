@@ -8,6 +8,7 @@ public class KlientBalansering{
         //Leser inn en tekst fra fil
         Balansering balansering = new Balansering();
         balansering.lesFraFil(filnavn);
+        //WOW A COMMENT
  }//main
 
 }//class
