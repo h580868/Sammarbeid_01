@@ -9,6 +9,7 @@ public class KlientBalansering{
         Balansering balansering = new Balansering();
         balansering.lesFraFil(filnavn);
         //WOW A COMMENT
+          //This comment is unacceptable. It infringes on my rights!
  }//main
 
 }//class
