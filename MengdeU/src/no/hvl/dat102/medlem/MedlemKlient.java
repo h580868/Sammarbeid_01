@@ -17,8 +17,10 @@ public class MedlemKlient {
 		System.out.println(medlem2.equals(new Medlem("Agurk")));
 		
 		
-		kontaktListe.leggTilMedlem(medlem2);
-		kontaktListe.leggTilMedlem(medlem1);
+		kontaktListe.leggTil(medlem2);
+		kontaktListe.leggTil(medlem1);
+		
+		kontaktListe.finnMedlem("Agurk").setNavn("Kiwi");
 		
 		System.out.println(kontaktListe.finnMedlemIndeks(medlem2.getNavn()));
 	}
@@ -27,7 +29,9 @@ public class MedlemKlient {
 		setup();
 		
 		System.out.println(kontaktListe.finnMedlemIndeks("Agurk"));
-		System.out.println(kontaktListe);
+		System.out.println(kontaktListe.toString());
+		kontaktListe.finnPartnerFor("Kiwi");
+		System.out.println(kontaktListe.toString());
 	}
 
 }

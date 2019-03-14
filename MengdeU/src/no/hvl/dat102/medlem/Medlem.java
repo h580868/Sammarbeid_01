@@ -7,7 +7,8 @@ import no.hvl.dat102.mengde.kjedet.KjedetMengde;
 public class Medlem {
 	private String navn;
 	private KjedetMengde<Hobby> hobbyer; // Eller TabellMengde
-	private int statusIndeks;
+	private int statusIndeks = -1;
+	private Medlem partner = null;
 
 //... Konstruktør
 //... Andre metoder
@@ -23,13 +24,31 @@ public class Medlem {
 	public void setNavn(String navn) {
 		this.navn = navn;
 	}
+	
+	public void setPartner(Medlem partner) {
+		this.partner = partner;
+	}
 
 	public void setStatusIndeks(int statusIndeks) {
 		this.statusIndeks = statusIndeks;
 	}
-
+	
 	public int getStatusIndeks() {
 		return statusIndeks;
+	}
+
+	/*
+	 public int getStatusIndeks() {
+	 
+		return statusIndeks;
+	}*/
+	
+	public boolean harPartner() {
+		if (statusIndeks >= 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void leggTilHobby(String hobby) {
@@ -74,6 +93,10 @@ public class Medlem {
 		}
 
 		return passer;
+	}
+	
+	public String toString() {		
+		return getNavn();
 	}
 
 	public String hobbyToString() {

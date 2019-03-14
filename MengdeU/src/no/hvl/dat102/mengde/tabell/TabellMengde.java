@@ -11,7 +11,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	private final static Random tilf = new Random();
 	private final static int STDK = 100;
 	private int antall;
-	private T[] tab;
+	protected T[] tab;
 
 	public TabellMengde() {
 		this(STDK);
