@@ -64,21 +64,53 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	@Override
 	public T fjern(T element) {
 		boolean funnet = false;
-		LinearNode<T> forgjenger, aktuell;
+		LinearNode<T> forgjenger = null;
+		LinearNode<T> aktuell = null;
 		T resultat = null;
-		/* Fyll ut
+		// eating inneholder() again
+		aktuell = start;
+		for (int soek = 0; soek < antall && !funnet; soek++) {
+			if (aktuell.getElement().equals(element)) {
+				funnet = true;
+				resultat = aktuell.getElement();
+			} else {
+				forgjenger = aktuell;
+				aktuell = aktuell.getNeste();
+			}
+		}
+
+		if (forgjenger == null && funnet) {
+			start = start.getNeste();
+			antall--;
+		} else if (funnet) {
+			forgjenger.setNeste(start.getNeste());
+			antall--;
+		}
+
+		/*
+		 * Fyll ut
 		 * 
 		 */
 		return resultat;
 	}//
 
-	
-
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> m2) {
 		MengdeADT<T> begge = new KjedetMengde<T>();
-		LinearNode<T> aktuell = start;
+		// LinearNode<T> aktuell = start;
 		T element = null;
+
+		if (this.equals(m2)) {
+			return this;
+		}
+		Iterator<T> iter = m2.oppramser();
+		begge.leggTilAlle(this);
+		while (iter.hasNext()) {
+			element = iter.next();
+			if (!begge.inneholder(element)) {
+				begge.leggTil(element);
+			}
+		}
 
 		/*
 		 * Fyll ut
@@ -90,24 +122,52 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {
 		MengdeADT<T> snittM = new KjedetMengde<T>();
 		T element;
-		/* Fyll ut...
+		Iterator<T> iter = m2.oppramser();
+		while (iter.hasNext()) {
+			element = iter.next();
+			if (this.inneholder(element) && !snittM.inneholder(element)) {
+				snittM.leggTil(element);
+			}
+		}
+		/*
+		 * Fyll ut...
 		 * 
-			if (this.inneholder(element))		 
-				((KjedetMengde<T>) snittM).settInn(element);
-		*/
+		 * if (this.inneholder(element)) ((KjedetMengde<T>) snittM).settInn(element);
+		 */
 		return snittM;
 	}
-
-	
 
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
 		MengdeADT<T> differensM = new KjedetMengde<T>();
 		T element;
-		/*Fyll ut
+
+		if (m2.equals(this)) {
+			return this;
+		}
+
+		Iterator<T> iter;
+		MengdeADT<T> compare;
+		if (m2.antall() > this.antall()) {
+			iter = m2.oppramser();
+			compare = this;
+		} else {
+			iter = this.oppramser();
+			compare = m2;
+		}
+
+		while (iter.hasNext()) {
+			element = iter.next();
+			if (!compare.inneholder(element) && !differensM.inneholder(element)) {
+				differensM.leggTil(element);
+			}
+		}
+
+		/*
+		 * Fyll ut
 		 * 
 		 */
-		
+
 		return differensM;
 	}
 
@@ -128,8 +188,19 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	@Override
 	public boolean equals(MengdeADT<T> m2) {
 		boolean likeMengder = true;
-		T element = null;
-		//Fyll ut
+		if (m2.antall() != this.antall()) {
+			return false; // <-- I prefer this
+			// likeMengder = false;
+		}
+		Iterator<T> iter = null;
+		// T element = null;
+		iter = m2.oppramser();
+		while (iter.hasNext() && likeMengder) {
+			if (!this.inneholder(iter.next())) {
+				likeMengder = false;
+			}
+		}
+		// Fyll ut
 		return likeMengder;
 	}
 
@@ -147,19 +218,30 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	public Iterator<T> oppramser() {
 		return new KjedetIterator<T>(start);
 	}
-	
+
 	@Override
 	public boolean undermengde(MengdeADT<T> m2) {
 		boolean erUnderMengde = true;
-		//Fyll ut
+		// Fyll ut
 		return erUnderMengde;
 	}
-	
+
 	private void settInn(T element) {
 		LinearNode<T> nyNode = new LinearNode<T>(element);
 		nyNode.setNeste(start);
 		start = nyNode;
 		antall++;
+	}
+
+	public String toString() {
+		// For klassen KjedetMengde
+		String resultat = "";
+		LinearNode<T> aktuell = start;
+		while (aktuell != null) {
+			resultat += aktuell.getElement().toString() + "\t";
+			aktuell = aktuell.getNeste();
+		}
+		return resultat;
 	}
 
 }// class
