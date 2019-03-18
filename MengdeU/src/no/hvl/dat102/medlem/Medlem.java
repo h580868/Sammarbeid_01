@@ -32,16 +32,10 @@ public class Medlem {
 	public void setStatusIndeks(int statusIndeks) {
 		this.statusIndeks = statusIndeks;
 	}
-	
+
 	public int getStatusIndeks() {
 		return statusIndeks;
 	}
-
-	/*
-	 public int getStatusIndeks() {
-	 
-		return statusIndeks;
-	}*/
 	
 	public boolean harPartner() {
 		if (statusIndeks >= 0) {

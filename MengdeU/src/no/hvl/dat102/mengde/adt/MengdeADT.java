@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public interface MengdeADT<T> {
 	// Interface som definerer alle operasjoner i en ADT
-	// med navn MengdeADT (en datasamling, en høynivå datastruktur)
+	// med navn MengdeADT (en datasamling, en hoenivaldatastruktur)
 
 	/**
 	 * Legger til et objekt av klasse T til dette mengde-objektet hvis det ikke
@@ -94,7 +94,7 @@ public interface MengdeADT<T> {
 	public boolean undermengde(MengdeADT<T> m2);
 
 	/**
-	 * Oppretter et 'oppramsobjekt' som kan brukes til å gjennomgå alle
+	 * Oppretter et 'oppramsobjekt' som kan brukes til EgjennomgEalle
 	 * elementer i mengden etter tur en gang
 	 * 
 	 * @return et oppramsobjekt
