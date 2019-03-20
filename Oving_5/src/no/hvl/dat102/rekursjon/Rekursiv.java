@@ -1,6 +1,7 @@
 package no.hvl.dat102.rekursjon;
 
 public class Rekursiv {
+	static int counter = 0;
 
 	public static int nSum(int n) {
 		if (n == 1) {
@@ -28,10 +29,22 @@ public class Rekursiv {
 		}
 		
 		return a2;
-	} // 2, 5, 15, 47, 
+	} // 2, 5, 15, 47, osv...
+	
+	public static void towerHanoi(int n, char from_rod, char to_rod, char aux_rod) {
+		if (n == 1) {
+			System.out.println("Move disk " + n + " from rod " + from_rod + " to rod " + to_rod + ", counter = " + ++counter);
+			return;
+		}
+		towerHanoi(n-1, from_rod, aux_rod, to_rod);
+		System.out.println("Move disk " + n + " from rod " + from_rod + " to rod " + to_rod + ", counter = " + ++counter);
+		towerHanoi(n-1, aux_rod, to_rod, from_rod);
+	}
 	
 	public static void main(String[] args) {
-		System.out.println(nSum(100));
-		System.out.println(nSekvens(2));
+		//System.out.println(nSum(100));
+		//System.out.println(nSekvens(2));
+		int n = 500;
+		towerHanoi(n, 'A', 'B', 'C');
 	}
 }
