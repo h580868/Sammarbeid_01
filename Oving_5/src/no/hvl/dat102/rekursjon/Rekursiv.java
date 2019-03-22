@@ -44,7 +44,9 @@ public class Rekursiv {
 	public static void main(String[] args) {
 		//System.out.println(nSum(100));
 		//System.out.println(nSekvens(2));
-		int n = 500;
+		int n = 12;
+		long timer = System.currentTimeMillis();
 		towerHanoi(n, 'A', 'B', 'C');
+		System.out.println((System.currentTimeMillis()-timer));
 	}
 }
