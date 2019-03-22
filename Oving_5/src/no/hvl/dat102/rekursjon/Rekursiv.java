@@ -1,5 +1,6 @@
 package no.hvl.dat102.rekursjon;
 
+
 public class Rekursiv {
 	static int counter = 0;
 
@@ -44,7 +45,10 @@ public class Rekursiv {
 	public static void main(String[] args) {
 		//System.out.println(nSum(100));
 		//System.out.println(nSekvens(2));
-		int n = 500;
+		int n = 25;
+		long timer = System.currentTimeMillis();
 		towerHanoi(n, 'A', 'B', 'C');
+		timer = System.currentTimeMillis() - timer;
+		System.out.println(timer);
 	}
 }
